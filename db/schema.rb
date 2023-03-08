@@ -10,8 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_08_051510) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "acomptes", force: :cascade do |t|
+    t.integer "acompte_number"
+    t.integer "balance"
+    t.bigint "users_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_acomptes_on_users_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "users_id", null: false
+    t.bigint "acomptes_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["acomptes_id"], name: "index_transactions_on_acomptes_id"
+    t.index ["users_id"], name: "index_transactions_on_users_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "password", null: false
+    t.string "password_confirmation", null: false
+    t.string "phone_number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "acomptes", "users", column: "users_id"
+  add_foreign_key "transactions", "acomptes", column: "acomptes_id"
+  add_foreign_key "transactions", "users", column: "users_id"
 end
