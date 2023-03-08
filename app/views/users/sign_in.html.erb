@@ -1,0 +1,7 @@
+<h1 id="logo">JOKO</h1>
+
+<%= simple_form_for @user do |f| %>
+  <%= f.input :email, label: false, placeholder: "Email" %>
+  <%= f.input :password, label: false, placeholder: "Password" %>
+  <%= f.button :submit, "Log in", class: "btn btn-primary btn-block" %>
+<% end %>

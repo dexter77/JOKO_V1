@@ -1,4 +1,4 @@
 class Transaction < ApplicationRecord
-  belongs_to :user_id
-  belongs_to :acompte_id
+  belongs_to :user
+  belongs_to :acompte
 end
