@@ -2,10 +2,10 @@
 
 <div class="container">
   <%= simple_form_for @user do |f| %>
-    <%= f.input :email, label: false, placeholder: "Email" %>
+    <%= f.input :email, label: false, placeholder: "Email", html: {autofocus: true} %>
     <%= f.input :password, label: false, placeholder: "Password" %>
-      <div class="btn">
-        <%= f.button :submit, "Log in", class: "btn btn-primary btn-block" %>
-      </div>
+        <%= f.button :submit, "Log in", class: "btn btn-primary", id: "btn_login" %>
   <% end %>
 </div>
+
+<%= button_to "Crée ton compte", users_path, class: "btn btn-primary text-center", id: "btn_signup" %>
