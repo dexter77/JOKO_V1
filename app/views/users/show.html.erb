@@ -1,1 +1,7 @@
 <h1>mon compte</h1>
+
+<%= @user.first_name %><br>
+<%= @user.last_name %>
+<%= @user.email %>
+
+<%= link_to "fermer", destroy_user_session_path, method: :delete %>

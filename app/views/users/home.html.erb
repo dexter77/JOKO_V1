@@ -1,0 +1,11 @@
+<h1 id="logo">JOKO</h1>
+
+<div class="container">
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :email, label: false, placeholder: "Email", html: {autofocus: true} %>
+    <%= f.input :password, label: false, placeholder: "Password" %>
+        <%= f.button :submit, "Log in", class: "btn btn-primary", id: "btn_login" %>
+  <% end %>
+</div>
+
+<%= link_to "Crée ton compte", new_user_path, class: "btn btn-primary", id: "btn_signup" %>
