@@ -1,11 +1,23 @@
 <h1 id="logo">JOKO</h1>
 
 <div class="container">
-  <%= simple_form_for @user do |f| %>
-    <%= f.input :email, label: false, placeholder: "Email", html: {autofocus: true} %>
-    <%= f.input :password, label: false, placeholder: "Password" %>
-        <%= f.button :submit, "Log in", class: "btn btn-primary", id: "btn_login" %>
-  <% end %>
+   <%= simple_form_for(resource, as: resource_name, url: user_path(resource_name), data: { turbo: :false }) do |f| %>
+        <%= f.input :email,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    required: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me, class:"checke", as: :boolean if devise_mapping.rememberable? %>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Connexion", class:'send-button' %>
+      </div>
+    <% end %>
+    <br>
+    <%= render "devise/shared/links" %>
+  </div>
 </div>
 
 <%= link_to "Crée ton compte", new_user_path, class: "btn btn-primary", id: "btn_signup" %>

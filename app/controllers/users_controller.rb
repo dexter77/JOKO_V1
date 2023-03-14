@@ -4,8 +4,6 @@ class UsersController < ApplicationController
   def home
     if user_signed_in?
       destroy and redirect_to user_path
-    else
-      render :home
     end
   end
 
@@ -16,9 +14,9 @@ class UsersController < ApplicationController
   def sign_in
     @user = User.new
     if user_signed_in?
-      redirect_to user_path(current_user)
-    else
-      render :sign_in
+      redirect_to user_path(:id)
+    # else
+    #   render :sign_in
     end
   end
 
@@ -42,14 +40,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
 
   private
 
   def create_acompte
     @acompte = Acompte.new
-    @acompte.user = @user
+    @acompte.user_id = @user.id
     @acompte.save
   end
 
